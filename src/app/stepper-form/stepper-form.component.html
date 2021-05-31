@@ -1,0 +1,39 @@
+<form [formGroup]="formGroup">
+  <mat-horizontal-stepper>
+    <mat-step>
+      <ng-template matStepLabel>First control</ng-template>
+
+      <app-first-part [formControlName]="formControlNames.part1"></app-first-part>
+      
+      <button mat-button matStepperNext>Next</button>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Second control</ng-template>
+
+      <app-second-part [formControlName]="formControlNames.part2"></app-second-part>
+      
+      <button mat-button matStepperNext>Next</button>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Third control</ng-template>
+
+      <app-third-part [formControlName]="formControlNames.part3"></app-third-part>
+      
+      <button mat-button (click)="send()">Send the form</button>
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>
+
+<div *ngIf="formGroupErrors?.formGroup?.sameValues">
+  Same values, please provide different ones
+</div>
+
+<hr>
+
+<p>Values</p>
+<pre>{{ formGroupValues | json }}</pre>
+
+<p>Errors</p>
+<pre>{{ formGroupErrors | json }}</pre>
